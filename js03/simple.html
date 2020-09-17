@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+<title>ちゃっとあぷり</title>
+</head>
+
+<body>
+  <header>
+
+    <h3>CHAT CHAT CHAT</h3>
+  
+  </header>
+<!-- コンテンツ表示画面 -->
+<div class="container">
+  <div id="output" style="height:300px;overflow:auto;border:3px solid #c1e1dc;"></div>
+</div>
+  <!-- 入力 -->
+  <div class="add">
+    <div class="tanu">
+      <img src="https://lh3.googleusercontent.com/tZ-RHjynlzWB3kQhxY8nG7O51gfs1Lie8tZvSg84Z668o6TJMeJlR9sX19jP3TuU904WVApV5j5v_CweeZwMudESg7PpVdtsZzulYcnYdj-xkQ=w120" width="50">
+     <input type="text" id="uname" placeholder="あなたのなまえは？">
+    </div>
+   
+    
+
+    <textarea id="text"  cols="30" rows="10" placeholder="メッセージをにゅうりょくしてね！"></textarea><br>
+
+      <div class="icon">
+        <ul>
+          <li class="imgs" data-img="0"><img src="imgs/buke.png" width="50"></li>
+          <li class="imgs" data-img="1"><img src="imgs/tuku.jpg" width="50"></li>
+          <li class="imgs" data-img="2"><img src="imgs/caram.png" width="50"></li>
+          
+        </ul>
+        
+        <button id="send">送信</button>
+      </div>
+      </div>
+    
+  
+
+<!--/ コンテンツ表示画面 -->
+
+
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
+
+<!--** 以下Firebase **-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const ref = firebase.database().ref();  //.ref()=ユニークキーを自動で振ってください
+
+// アイコン処理
+let d = 0;
+const img =["buke.png","tuku.jpg","caram.png"];
+
+$(".imgs").on("click",function(){
+  d = $(this).attr("data-img");
+  // console.log(d);
+});
+
+
+// 関数定義
+function send(){
+  const uname = $("#uname").val();
+  const text = $("#text").val();
+  const date1 = new Date();
+  const time = date1.getFullYear()+'ねん'+
+            (date1.getMonth()+1)+'がつ'+
+            date1.getDate()+'にち'+
+            date1.getHours()+'じ'+
+            date1.getMinutes()+'ふん';
+           
+// const text =$("#text").val();
+  const msg = {
+    uname:uname,
+    text:text,
+    time:time,
+    icon:d
+  }
+  ref.push(msg);//set=決まった名前、push=ユニーク
+}
+
+  //文字を送信
+$("#send").on("click", function(){
+ send();
+});
+
+// 受信処理
+ref.on("child_added",function(data){
+  const v = data.val(); //送信されたオブジェクトを取得
+  const k = data.key; //ユニークキーの取得
+  const h ='<dl><img src= "imgs/'+img[v.icon]+'"width="50" style="border-radius:50%; border-width: 4px; border-style: solid;  border-color:pink;"><br>'+ v.uname+'<br>'+'<dt>'+ v.text +'</dt><dd>'+v.time+'</dd></dl>';
+  $("#output").append(h);
+  // スクロール部分
+  const lastElement = document.querySelector("#output").lastElementChild//最後の要素を取得
+  lastElement.scrollIntoView({behavior: "smooth"})//最後の要素が見えるまでスクロール
+  console.log(d);
+});
+
+// イベント情報取得
+$("#text").on("keydown", function(e){
+  // console.log(e);
+  if(e.keyCode == 13){
+    send();
+  }
+});
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

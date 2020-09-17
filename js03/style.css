@@ -1,0 +1,113 @@
+body {
+  background: #ffccac;
+}
+
+h3 {
+  font-size: 30px;
+  color: white;
+  }
+  
+  
+  header {
+  
+  height: 90px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  }
+
+.add {
+  text-align: center;
+ /* padding: 0 50px 0 50px; */
+ /* background: #fdd475; */
+  }
+
+  .tanu img {
+    border-radius: 50%;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #ffeb94;
+  
+    margin-top: 30px;
+    margin-bottom: auto;
+  
+  }
+  
+/* 送信ボタン */
+#send{
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 1pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #ffeb94;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffeb94;    /* 枠の指定 */
+  margin-bottom: 20px;
+}
+#send:hover {
+  color         : #ffeb94;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+
+
+/* アイコン丸 */
+.icon img {
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: white;
+
+}
+
+.icon img:hover {
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color:#fdd475;
+}
+.imgs {
+  list-style: none;
+display: inline-block;
+padding: 0 31px 0 10px;
+}
+
+#output {
+  padding: 20px 50px 20px 50px;
+  background: white;
+}
+
+
+/* text */
+dt {
+  position   : relative;                /* 指定した分だけ相対的に移動 */
+  padding: 10px;                        /* テキストの前後の余白 */
+  background-color: #ffeb94;       /* 背景色（透明度） */
+  width:300px;                          /* 吹き出し全体の幅 */
+  left : 17%;                           /* 表示位置 */
+  transform: translate(-50%);           /* 表示位置の調整 */
+
+}
+dt:after{
+  border-right: 20px solid #ffeb94;  /* 吹き出し口の幅・色 */
+  border-top: 10px solid transparent;     /* 吹き出し口の高さ１／２ */
+  border-bottom: 10px solid transparent;  /* 吹き出し口の高さ１／２ */
+  left: -20px;                            /* 吹き出し口の位置調整 */
+  top : 6%;                       /* 吹き出し口の縦位置 */
+  content: "";                       /* コンテンツの挿入 */
+  position: absolute;                /* 親要素を基準 */
+
+}
+
+.dd {
+  padding-top: 10px;
+}
+/* uname */
+#uname {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
